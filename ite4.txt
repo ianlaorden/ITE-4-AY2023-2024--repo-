@@ -1,6 +1,7 @@
-Hello IT
-Good bye!
-
-I don't know.
-PASSED?
-FAILED?
+git clone https://github.com/ianlaorden/ITE-4-AY2023-2024--repo-.git
+git status
+git add .
+git commit -m ""
+(git commit -a -m "")
+git push
+git pull
