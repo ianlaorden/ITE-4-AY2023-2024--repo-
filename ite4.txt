@@ -2,3 +2,5 @@ Hello IT
 Good bye!
 
 I don't know.
+PASSED?
+FAILED?
