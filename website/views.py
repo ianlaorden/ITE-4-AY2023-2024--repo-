@@ -51,3 +51,37 @@ def add_record(request):
     else:
         messages.success(request, 'You must be logged in to add a record.')
         return redirect('home')
+
+
+def customer_record(request, pk):
+    if request.user.is_authenticated:
+        record = Record.objects.get(id=pk)
+        return render(request, 'record.html', {'record': record})
+    else:
+        messages.success(request, 'You must be logged in to view a record.')
+        return redirect('home')
+
+
+def delete_record(request, pk):
+    if request.user.is_authenticated:
+        record = Record.objects.get(id=pk)
+        record.delete()
+        messages.success(request, 'Record successfully deleted.')
+        return redirect('home')
+    else:
+        messages.success(request, 'You must be logged in to delete a record.')
+        return redirect('home')
+
+
+def update_record(request, pk):
+    if request.user.is_authenticated:
+        record = Record.objects.get(id=pk)
+        form = AddRecordForm(request.POST or None, instance=record)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Record successfully updated.')
+            return redirect('home')
+        return render(request, 'update_record.html', {'form': form})
+    else:
+        messages.success(request, 'You must be logged in to update a record.')
+        return redirect('home')
